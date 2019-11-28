@@ -1,0 +1,18 @@
+{
+  "name": "cordova-plugin-channel-io",
+  "version": "1.0.0",
+  "description": "Cordova plugin for ChannelIO",
+  "cordova": {
+    "id": "cordova-plugin-channel-io",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "author": "eee_nbnb",
+  "license": "MIT"
+}

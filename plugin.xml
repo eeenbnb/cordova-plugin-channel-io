@@ -1,0 +1,81 @@
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-channel-io"
+  version="1.0.0">
+
+  <name>ChannelIO Plugin</name>
+  <description>Cordova plugin for ChannelIO</description>
+  <license>MIT</license>
+  <keywords>cordova</keywords>
+
+  <js-module src="www/channel-io.js" name="ChannelIOPlugin">
+    <merges target="cordova.plugins.channel.io" />
+  </js-module>
+
+  <engines>
+    <engine name="cordova" version=">=9.0.0"/>
+    <engine name="cordova-android" version=">=8.0.0"/>
+    <engine name="cordova-ios" version=">=5.0.0"/>
+  </engines>
+
+  <!-- iOS -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ChannelIOPlugin">
+        <param name="ios-package" value="ChannelIOPlugin" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/ChannelIOPlugin.h" />
+    <source-file src="src/ios/ChannelIOPlugin.m" />
+    <header-file src="src/ios/AppDelegate+ChannelIOPlugin.h" />
+    <source-file src="src/ios/AppDelegate+ChannelIOPlugin.m" />
+
+    <podspec>
+      <config>
+        <source url="https://github.com/CocoaPods/Specs.git"/>
+      </config>
+      <pods use-frameworks="true">
+        <pod name="ChannelIO" spec="~> 6.1.0" />
+      </pods>
+    </podspec>
+
+    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+      <string>Accessing to camera in order to provide better user experience</string>
+    </config-file>
+
+    <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+      <string>Accessing to photo library in order to provide better user experience</string>
+    </config-file>
+
+    <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+      <string>Accessing to photo library in order to save photos</string>
+    </config-file>
+
+    <config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+      <string>Accessing to microphone to record voice for video</string>
+    </config-file>
+
+  </platform>
+
+  <!-- android -->
+  <platform name="android">
+    <preference name="ANDROID_CHANNEL_IO_VERSION" default="6.1.+"/>
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="ChannelIOPlugin">
+        <param name="android-package" value="by.eeenbnb.cordova.channelio.ChannelIOPlugin" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+    <dependency id="cordova-support-android-plugin" version="~1.0.0"/>
+
+    <framework src="com.zoyi.channel:plugin-android:$ANDROID_CHANNEL_IO_VERSION" />
+
+    <source-file src="src/android/ChannelIOPlugin.java"
+                 target-dir="src/by/eeenbnb/cordova/channelio/" />
+  </platform>
+
+</plugin>
