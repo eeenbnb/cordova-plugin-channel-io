@@ -40,6 +40,12 @@
 
 - (void)setDeviceToken:(CDVInvokedUrlCommand *)command {
     NSString* token = [command.arguments objectAtIndex:0];
+    if ([token isEqual:[NSNull null]]){
+      NSLog(@"token is null");
+    }else{
+      NSData* tokenData = [token dataUsingEncoding:NSUTF8StringEncoding];
+      [ChannelIO initPushTokenWithDeviceToken:tokenData];
+    }
 
     [ChannelIO initPushTokenWithDeviceToken:token];
 
