@@ -37,7 +37,7 @@
         <source url="https://github.com/CocoaPods/Specs.git"/>
       </config>
       <pods use-frameworks="true">
-        <pod name="ChannelIO" spec="~> 6.1.15" />
+        <pod name="ChannelIO" spec="6.1.15" />
       </pods>
     </podspec>
 
