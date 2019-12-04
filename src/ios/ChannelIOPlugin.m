@@ -43,8 +43,7 @@
     if ([token isEqual:[NSNull null]]){
       NSLog(@"token is null");
     }else{
-      NSData* tokenData = [token dataUsingEncoding:NSUTF8StringEncoding];
-      [ChannelIO initPushTokenWithDeviceToken:tokenData];
+      [ChannelIO initPushTokenWithTokenString:token];
     }
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
