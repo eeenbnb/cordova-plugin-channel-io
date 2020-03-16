@@ -37,7 +37,7 @@
         <source url="https://github.com/CocoaPods/Specs.git"/>
       </config>
       <pods use-frameworks="true">
-        <pod name="ChannelIO"/>
+        <pod name="ChannelIO" spec="~> 7.0.1"/>
       </pods>
     </podspec>
 
@@ -61,7 +61,7 @@
 
   <!-- android -->
   <platform name="android">
-    <preference name="ANDROID_CHANNEL_IO_VERSION" default="6.1.+"/>
+    <preference name="ANDROID_CHANNEL_IO_VERSION" default="7.0.+"/>
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="ChannelIOPlugin">
