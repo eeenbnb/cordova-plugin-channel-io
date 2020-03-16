@@ -27,7 +27,7 @@
 
     ChannelPluginSettings *settings = [[ChannelPluginSettings alloc] init];
     [settings setPluginKey:pluginKey];
-    [settings setUserId:userId];
+    [settings setMemberId:userId];
 
     Profile *profile = [[Profile alloc] init];
     [profile setWithName:userName];
