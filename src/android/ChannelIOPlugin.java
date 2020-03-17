@@ -29,7 +29,7 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
   @CordovaMethod
   private void startWithRegisteredUser(String pluginKey, String userId, String name, CallbackContext callbackContext) {
    ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
-   settings.setUserId(userId);
+   settings.setMemberId(userId);
 
    Profile profile = Profile.create()
          .setName(name);
