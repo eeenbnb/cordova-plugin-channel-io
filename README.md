@@ -41,6 +41,11 @@ window.cordova.plugins.channel.io.startWithGuestUser("YOUR_PLUGIN_TOKEN");
 window.cordova.plugins.channel.io.startWithRegisteredUser("YOUR_PLUGIN_TOKEN","USER_ID","USER_NAME");
 ```
 
+set name and email.
+```
+window.cordova.plugins.channel.io.startWithRegisteredUserAndEmail("YOUR_PLUGIN_TOKEN","USER_ID","USER_NAME","USER_EMAIL");
+```
+
 #### launchOptions
 show
 ```
