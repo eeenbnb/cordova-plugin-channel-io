@@ -38,6 +38,18 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
   }
 
   @CordovaMethod
+  private void startWithRegisteredUserAndEmail(String pluginKey, String userId, String name, String email, CallbackContext callbackContext) {
+   ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
+   settings.setMemberId(userId);
+
+   Profile profile = Profile.create()
+         .setName(name)
+         .setEmail(email);
+
+   ChannelIO.boot(settings, profile);
+  }
+
+  @CordovaMethod
   private void setDeviceToken(String token, CallbackContext callbackContext) {
     ChannelIO.initPushToken(token);
   }

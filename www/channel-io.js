@@ -12,6 +12,11 @@ module.exports = {
             exec(resolve, reject, PLUGIN_NAME, "startWithRegisteredUser", [plugKey, id, name]);
         });
     },
+    startWithRegisteredUserAndEmail: function(plugKey, id, name, email) {
+        return new Promise(function(resolve, reject) {
+            exec(resolve, reject, PLUGIN_NAME, "startWithRegisteredUserAndEmail", [plugKey, id, name, email]);
+        });
+    },
     setDeviceToken: function(token) {
         return new Promise(function(resolve, reject) {
             exec(resolve, reject, PLUGIN_NAME, "setDeviceToken", [token]);

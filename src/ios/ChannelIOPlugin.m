@@ -38,6 +38,26 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)startWithRegisteredUserAndEmail:(CDVInvokedUrlCommand *)command {
+    NSString* pluginKey = [command.arguments objectAtIndex:0];
+    NSString* userId = [command.arguments objectAtIndex:1];
+    NSString* userName = [command.arguments objectAtIndex:2];
+    NSString* userEmail = [command.arguments objectAtIndex:3];
+
+    ChannelPluginSettings *settings = [[ChannelPluginSettings alloc] init];
+    [settings setPluginKey:pluginKey];
+    [settings setMemberId:userId];
+
+    Profile *profile = [[Profile alloc] init];
+    [profile setWithName:userName];
+    [profile setWithEmail:userEmail];
+
+    [ChannelIO bootWith:settings profile:profile completion:nil];
+
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void)setDeviceToken:(CDVInvokedUrlCommand *)command {
     NSString* token = [command.arguments objectAtIndex:0];
     if ([token isEqual:[NSNull null]]){
