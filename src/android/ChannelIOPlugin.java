@@ -18,6 +18,7 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
   protected void pluginInitialize() {
    ChannelIOPlugin.instance = this;
    ChannelIO.initialize(this.cordova.getActivity().getApplication());
+   ChannelIO.track("init_cordova_channelio");
   }
 
   @CordovaMethod
@@ -67,5 +68,10 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
   @CordovaMethod
   private void hideLauncher(CallbackContext callbackContext) {
     ChannelIO.hide();
+  }
+
+  @CordovaMethod
+  private void track(String eventName, Map<String, Object> properties, CallbackContext callbackContext) {
+    ChannelIO.track(eventName, properties);
   }
 }

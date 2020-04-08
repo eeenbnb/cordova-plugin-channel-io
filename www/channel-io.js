@@ -37,4 +37,9 @@ module.exports = {
             exec(resolve, reject, PLUGIN_NAME, "hideLauncher", []);
         });
     },
+    track: function(eventName,eventProperty) {
+        return new Promise(function(resolve, reject) {
+            exec(resolve, reject, PLUGIN_NAME, "event", [eventName, eventProperty]);
+        });
+    },
 };
