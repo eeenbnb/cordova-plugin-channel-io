@@ -9,5 +9,6 @@
 - (void)openLauncher:(CDVInvokedUrlCommand *)command;
 - (void)showLauncher:(CDVInvokedUrlCommand *)command;
 - (void)hideLauncher:(CDVInvokedUrlCommand *)command;
+- (void)track:(CDVInvokedUrlCommand *)command;
 
 @end

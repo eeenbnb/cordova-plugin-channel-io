@@ -6,8 +6,9 @@
 
 - (void)pluginInitialize {
     NSLog(@"Starting Channel IO plugin");
-
+    [ChannelIO trackWithEventName:@"init_cordova_channelio"];
 }
+
 - (void)startWithGuestUser:(CDVInvokedUrlCommand *)command {
     NSString* pluginKey = [command.arguments objectAtIndex:0];
 
@@ -86,6 +87,16 @@
 
 - (void)hideLauncher:(CDVInvokedUrlCommand *)command {
     [ChannelIO hideWithAnimated:YES];
+
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)track:(CDVInvokedUrlCommand *)command {
+    NSString* eventName = [command.arguments objectAtIndex:0];
+    NSDictionary<NSString *, id> eventProperty = [command.arguments objectAtIndex:1];
+
+    [ChannelIO trackWithEventName:eventName eventProperty:eventProperty];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
