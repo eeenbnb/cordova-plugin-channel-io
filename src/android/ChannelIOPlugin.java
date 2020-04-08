@@ -16,38 +16,40 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
 
   @Override
   protected void pluginInitialize() {
-   ChannelIOPlugin.instance = this;
-   ChannelIO.initialize(this.cordova.getActivity().getApplication());
-   ChannelIO.track("init_cordova_channelio");
+    ChannelIOPlugin.instance = this;
+    ChannelIO.initialize(this.cordova.getActivity().getApplication());
   }
 
   @CordovaMethod
   private void startWithGuestUser(String pluginKey, CallbackContext callbackContext) {
     ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
     ChannelIO.boot(settings);
+    ChannelIO.track("init_cordova_channelio");
   }
 
   @CordovaMethod
   private void startWithRegisteredUser(String pluginKey, String userId, String name, CallbackContext callbackContext) {
-   ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
-   settings.setMemberId(userId);
+    ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
+    settings.setMemberId(userId);
 
-   Profile profile = Profile.create()
-         .setName(name);
+    Profile profile = Profile.create()
+       .setName(name);
 
-   ChannelIO.boot(settings, profile);
+    ChannelIO.boot(settings, profile);
+    ChannelIO.track("init_cordova_channelio");
   }
 
   @CordovaMethod
   private void startWithRegisteredUserAndEmail(String pluginKey, String userId, String name, String email, CallbackContext callbackContext) {
-   ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
-   settings.setMemberId(userId);
+    ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
+    settings.setMemberId(userId);
 
-   Profile profile = Profile.create()
+    Profile profile = Profile.create()
          .setName(name)
          .setEmail(email);
 
-   ChannelIO.boot(settings, profile);
+    ChannelIO.boot(settings, profile);
+    ChannelIO.track("init_cordova_channelio");
   }
 
   @CordovaMethod

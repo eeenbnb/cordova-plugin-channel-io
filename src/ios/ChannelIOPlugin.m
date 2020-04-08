@@ -6,7 +6,6 @@
 
 - (void)pluginInitialize {
     NSLog(@"Starting Channel IO plugin");
-    [ChannelIO trackWithEventName:@"init_cordova_channelio"];
 }
 
 - (void)startWithGuestUser:(CDVInvokedUrlCommand *)command {
@@ -16,6 +15,7 @@
     [settings setPluginKey:pluginKey];
 
     [ChannelIO bootWith:settings profile:nil completion:nil];
+    [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -34,6 +34,7 @@
     [profile setWithName:userName];
 
     [ChannelIO bootWith:settings profile:profile completion:nil];
+    [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -54,6 +55,7 @@
     [profile setWithEmail:userEmail];
 
     [ChannelIO bootWith:settings profile:profile completion:nil];
+    [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -94,7 +96,7 @@
 
 - (void)track:(CDVInvokedUrlCommand *)command {
     NSString* eventName = [command.arguments objectAtIndex:0];
-    NSDictionary<NSString *, id> eventProperty = [command.arguments objectAtIndex:1];
+    NSDictionary<NSString *, id>* eventProperty = [command.arguments objectAtIndex:1];
 
     [ChannelIO trackWithEventName:eventName eventProperty:eventProperty];
 
