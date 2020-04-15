@@ -14,8 +14,9 @@
     ChannelPluginSettings *settings = [[ChannelPluginSettings alloc] init];
     [settings setPluginKey:pluginKey];
 
-    [ChannelIO bootWith:settings profile:nil completion:nil];
-    [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
+    [ChannelIO bootWith:settings profile:nil completion:^(ChannelPluginCompletionStatus status, User* user) {
+      [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
+    }];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -33,8 +34,9 @@
     Profile *profile = [[Profile alloc] init];
     [profile setWithName:userName];
 
-    [ChannelIO bootWith:settings profile:profile completion:nil];
-    [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
+    [ChannelIO bootWith:settings profile:profile completion:^(ChannelPluginCompletionStatus status, User* user) {
+      [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
+    }];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -54,8 +56,9 @@
     [profile setWithName:userName];
     [profile setWithEmail:userEmail];
 
-    [ChannelIO bootWith:settings profile:profile completion:nil];
-    [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
+    [ChannelIO bootWith:settings profile:profile completion:^(ChannelPluginCompletionStatus status, User* user) {
+      [ChannelIO trackWithEventName:@"init_cordova_channelio" eventProperty:nil];
+    }];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];

@@ -8,6 +8,9 @@ import org.apache.cordova.CallbackContext;
 import com.zoyi.channel.plugin.android.ChannelIO;
 import com.zoyi.channel.plugin.android.Profile;
 import com.zoyi.channel.plugin.android.ChannelPluginSettings;
+import com.zoyi.channel.plugin.android.OnBootListener;
+import com.zoyi.channel.plugin.android.ChannelPluginCompletionStatus;
+import com.zoyi.channel.plugin.android.Guest;
 
 
 public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
@@ -23,8 +26,7 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
   @CordovaMethod
   private void startWithGuestUser(String pluginKey, CallbackContext callbackContext) {
     ChannelPluginSettings settings = new ChannelPluginSettings(pluginKey);
-    ChannelIO.boot(settings);
-    ChannelIO.track("init_cordova_channelio");
+    ChannelIO.boot(settings, new InitEvent());
   }
 
   @CordovaMethod
@@ -35,8 +37,7 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
     Profile profile = Profile.create()
        .setName(name);
 
-    ChannelIO.boot(settings, profile);
-    ChannelIO.track("init_cordova_channelio");
+    ChannelIO.boot(settings, profile, new InitEvent());
   }
 
   @CordovaMethod
@@ -48,8 +49,7 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
          .setName(name)
          .setEmail(email);
 
-    ChannelIO.boot(settings, profile);
-    ChannelIO.track("init_cordova_channelio");
+    ChannelIO.boot(settings, profile, new InitEvent());
   }
 
   @CordovaMethod
@@ -75,5 +75,11 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
   @CordovaMethod
   private void track(String eventName, Map<String, Object> properties, CallbackContext callbackContext) {
     ChannelIO.track(eventName, properties);
+  }
+}
+
+class InitEvent implements OnBootListener {
+  public void onCompletion(ChannelPluginCompletionStatus status, Guest guest){
+    ChannelIO.track("init_cordova_channelio");
   }
 }
