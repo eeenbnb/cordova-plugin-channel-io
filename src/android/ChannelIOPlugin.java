@@ -10,7 +10,9 @@ import com.zoyi.channel.plugin.android.Profile;
 import com.zoyi.channel.plugin.android.ChannelPluginSettings;
 import com.zoyi.channel.plugin.android.OnBootListener;
 import com.zoyi.channel.plugin.android.ChannelPluginCompletionStatus;
-import com.zoyi.channel.plugin.android.Guest;
+import com.zoyi.channel.plugin.android.User;
+
+import java.util.Map;
 
 
 public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
@@ -79,7 +81,7 @@ public class ChannelIOPlugin extends ReflectiveCordovaPlugin {
 }
 
 class InitEvent implements OnBootListener {
-  public void onCompletion(ChannelPluginCompletionStatus status, Guest guest){
+  public void onCompletion(ChannelPluginCompletionStatus status, User guest){
     ChannelIO.track("init_cordova_channelio");
   }
 }
