@@ -39,7 +39,7 @@ module.exports = {
     },
     track: function(eventName,eventProperty) {
         return new Promise(function(resolve, reject) {
-            exec(resolve, reject, PLUGIN_NAME, "event", [eventName, eventProperty]);
+            exec(resolve, reject, PLUGIN_NAME, "track", [eventName, eventProperty]);
         });
     },
 };
